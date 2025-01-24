@@ -17,7 +17,7 @@ p = np.zeros((ny, nx))  # Pressure field
 b = np.zeros((ny, nx))  # Source term for pressure Poisson equation
 
 # Boundary conditions
-def apply_boundary_conditions(u, v, p):
+def apply_boundary_conditions(u, v):
     u[0, :] = 0  # Bottom wall
     u[-1, :] = 0  # Top wall
     u[:, 0] = 0  # Left wall
@@ -63,7 +63,7 @@ for n in range(nt):
     un = u.copy()
     vn = v.copy()
 
-    apply_boundary_conditions(u, v, p)
+    apply_boundary_conditions(u, v)
 
     build_b(b, un, vn, dx, dy)
     p = pressure_poisson(p, b, dx, dy)
