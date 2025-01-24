@@ -1,3 +1,4 @@
+# incompressible Navier-Stokes in two dimensions using finite difference
 import numpy as np
 import matplotlib.pyplot as plt
 
