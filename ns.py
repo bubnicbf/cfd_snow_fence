@@ -99,7 +99,7 @@ for n in range(nt):
 
 # Plot the results
 plt.figure(figsize=(11, 7))
-plt.quiver(np.linspace(0, lx, nx), np.linspace(0, ly, ny), u, v, scale=20, pivot="midle")
+plt.quiver(np.linspace(0, lx, nx), np.linspace(0, ly, ny), u, v, scale=20, pivot="middle")
 plt.title("Velocity Field")
 plt.xlabel("X (feet)")
 plt.ylabel("Y (feet)")
