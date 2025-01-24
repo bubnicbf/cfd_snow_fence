@@ -8,7 +8,7 @@ dx, dy = lx / (nx - 1), ly / (ny - 1)  # Grid spacing
 nt = 500  # Number of time steps
 dt = 0.001  # Time step size
 nu = 1.46e-5  # Kinematic viscosity of air at 1 atm and freezing temperatures (m^2/s)  # Kinematic viscosity
-rho = 1.0  # Density
+rho = 1.275  # Density of air at 1 atm and freezing temperatures (kg/m^3)  # Density
 
 # Initialize variables
 u = np.zeros((ny, nx))  # Velocity in x direction
