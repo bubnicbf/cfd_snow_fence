@@ -1,4 +1,3 @@
-# incompressible Navier-Stokes in two dimensions using finite difference
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -17,19 +16,21 @@ v = np.zeros((ny, nx))  # Velocity in y direction
 p = np.zeros((ny, nx))  # Pressure field
 b = np.zeros((ny, nx))  # Source term for pressure Poisson equation
 
-# Boundary conditions
+# Boundary conditions for an open domain
 def apply_boundary_conditions(u, v):
-    u[0, :] = 0  # Bottom wall
-    u[-1, :] = 0  # Top wall
-    u[:, 0] = 0  # Left wall
-    u[:, -1] = 0  # Right wall
+    # Flat ground: no-slip condition (zero velocity)
+    u[0, :] = 0  # Ground (bottom boundary)
+    v[0, :] = 0
 
-    v[0, :] = 0  # Bottom wall
-    v[-1, :] = 0  # Top wall
-    v[:, 0] = 0  # Left wall
-    v[:, -1] = 0  # Right wall
+    # Open top: free-slip condition (no vertical velocity gradient)
+    v[-1, :] = v[-2, :]
+    u[-1, :] = u[-2, :]
 
-    u[-1, 1:-1] = 1  # Lid-driven top boundary
+    # Open sides: inflow on the left, outflow on the right
+    u[:, 0] = 1  # Constant inflow velocity at the left boundary
+    v[:, 0] = 0
+    u[:, -1] = u[:, -2]  # Zero gradient at the outflow (right boundary)
+    v[:, -1] = v[:, -2]
 
 # Pressure Poisson equation
 def pressure_poisson(p, b, dx, dy):
@@ -42,10 +43,10 @@ def pressure_poisson(p, b, dx, dy):
             (2 * (dx**2 + dy**2))
         )
         # Boundary conditions for pressure
-        p[:, 0] = p[:, 1]  # dp/dx = 0 at left wall
-        p[:, -1] = p[:, -2]  # dp/dx = 0 at right wall
-        p[0, :] = p[1, :]  # dp/dy = 0 at bottom wall
-        p[-1, :] = 0  # p = 0 at top wall
+        p[:, 0] = p[:, 1]  # dp/dx = 0 at left boundary
+        p[:, -1] = p[:, -2]  # dp/dx = 0 at right boundary
+        p[0, :] = p[1, :]  # dp/dy = 0 at bottom boundary
+        p[-1, :] = p[-2, :]  # dp/dy = 0 at top boundary
     return p
 
 # Build the source term
