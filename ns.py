@@ -27,6 +27,7 @@ def apply_boundary_conditions(u, v):
     u[-1, :] = u[-2, :]
 
     # Open sides: inflow on the left, outflow on the right
+    # Assumes wind blows on pos x axis across the domain
     u[:, 0] = 1  # Constant inflow velocity at the left boundary
     v[:, 0] = 0
     u[:, -1] = u[:, -2]  # Zero gradient at the outflow (right boundary)
