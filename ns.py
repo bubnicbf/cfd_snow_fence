@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Parameters
-nx, ny = 195, 140  # Grid points in x and y for 195' x 140' area
-lx, ly = 195.0, 140.0  # Length of the domain in feet
+nx, ny = 60, 42  # Grid points in x and y for 60 m x 42 m area
+lx, ly = 60.0, 42.0  # Length of the domain in meters
 dx, dy = lx / (nx - 1), ly / (ny - 1)  # Grid spacing
 nt = 500  # Number of time steps
 dt = 0.001  # Time step size
@@ -104,6 +104,6 @@ for n in range(nt):
 plt.figure(figsize=(11, 7))
 plt.quiver(np.linspace(0, lx, nx), np.linspace(0, ly, ny), u, v, scale=20, pivot="middle")
 plt.title("Velocity Field")
-plt.xlabel("X (feet)")
-plt.ylabel("Y (feet)")
+plt.xlabel("X (meters)")
+plt.ylabel("Y (meters)")
 plt.show()
