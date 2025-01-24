@@ -7,7 +7,7 @@ lx, ly = 195.0, 140.0  # Length of the domain in feet
 dx, dy = lx / (nx - 1), ly / (ny - 1)  # Grid spacing
 nt = 500  # Number of time steps
 dt = 0.001  # Time step size
-nu = 0.1  # Kinematic viscosity
+nu = 1.46e-5  # Kinematic viscosity of air at 1 atm and freezing temperatures (m^2/s)  # Kinematic viscosity
 rho = 1.0  # Density
 
 # Initialize variables
